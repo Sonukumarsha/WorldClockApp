@@ -24,7 +24,7 @@ const AppNavigator = () => {
         <Stack.Screen 
           name="CityList" 
           component={CityListScreen} 
-          options={{ title: 'world clock' }} 
+          options={{ title: 'World Clock' }} 
         />
         <Stack.Screen 
           name="CityTime" 

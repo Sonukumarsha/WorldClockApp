@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
 import CityItem from '../components/CityItem';
 import cities from '../data/cities';
 
-const CityListScreen = ({ navigation }) => {
+const CityListScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [citiesData, setCitiesData] = useState([]);
 
@@ -14,10 +14,6 @@ const CityListScreen = ({ navigation }) => {
       setIsLoading(false);
     }, 1000);
   }, []);
-
-  const handleCityPress = (city) => {
-    navigation.navigate('CityTime', { city });
-  };
 
   if (isLoading) {
     return (
@@ -31,9 +27,9 @@ const CityListScreen = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={citiesData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <CityItem city={item} onPress={handleCityPress} />
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <CityItem city={item} navigation={navigation} />
         )}
         contentContainerStyle={styles.list}
       />

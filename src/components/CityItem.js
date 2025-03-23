@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { getCurrentTime } from '../utils/timeUtils';
 
-const CityItem = ({ city, onPress }) => {
+const CityItem = ({ city,  navigation }) => {
   return (
-    <TouchableOpacity style={styles.item} onPress={() => onPress(city)}>
+    <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('CityTime', { city })}>
       <View style={styles.content}>
         <View style={styles.textContainer}>
           <Text style={styles.cityName}>{city.name}</Text>
@@ -14,9 +14,9 @@ const CityItem = ({ city, onPress }) => {
         </View>
         <View style={styles.iconContainer}>
           {/* <Image
-            source={require('../../assets/icons/clock.png')}
+            source={require('../../assets/clock.png')}
             style={styles.icon}
-            defaultSource={require('../../assets/icons/clock.png')}
+            defaultSource={require('../../assets/clock.png')}
           /> */}
           <Icon name="timer" size={24} color="#4a6ea9" />
         </View>

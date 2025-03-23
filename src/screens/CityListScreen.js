@@ -23,13 +23,18 @@ const CityListScreen = ({navigation}) => {
     );
   }
 
+  const removeCity = cityId => {
+    const updatedCities = citiesData.filter(city => city.id !== cityId);
+    setCitiesData(updatedCities);
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
         data={citiesData}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <CityItem city={item} navigation={navigation} />
+          <CityItem city={item} navigation={navigation} removeCity={removeCity} />
         )}
         contentContainerStyle={styles.list}
       />

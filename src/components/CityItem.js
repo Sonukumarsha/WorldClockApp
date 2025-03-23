@@ -1,24 +1,28 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import Icon from "react-native-vector-icons/MaterialIcons";
-import { getCurrentTime } from '../utils/timeUtils';
+import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {getCurrentTime} from '../utils/timeUtils';
 
-const CityItem = ({ city,  navigation }) => {
+const CityItem = ({city, navigation, removeCity}) => {
   return (
-    <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('CityTime', { city })}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => navigation.navigate('CityTime', {city})}>
       <View style={styles.content}>
         <View style={styles.textContainer}>
           <Text style={styles.cityName}>{city.name}</Text>
           <Text style={styles.countryName}>{city.country}</Text>
-          <Text style={styles.currentTime}>{getCurrentTime(city.timezone)}</Text>
+          <Text style={styles.currentTime}>
+            {getCurrentTime(city.timezone)}
+          </Text>
         </View>
         <View style={styles.iconContainer}>
-          {/* <Image
-            source={require('../../assets/clock.png')}
-            style={styles.icon}
-            defaultSource={require('../../assets/clock.png')}
-          /> */}
           <Icon name="timer" size={24} color="#4a6ea9" />
+          <TouchableOpacity
+            disallowInterruption={true}
+            onPress={() => removeCity(city.id)}>
+            <Icon name="delete" size={24} color="#ff0000" />
+          </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>
@@ -33,7 +37,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderRadius: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 3,
     elevation: 3,
@@ -62,8 +66,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   iconContainer: {
-    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
+    gap: '20px',
   },
   icon: {
     width: 30,

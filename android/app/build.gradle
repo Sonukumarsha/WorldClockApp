@@ -84,6 +84,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resValue 'string', 'app_id', "1LF3X71GPZMPDPMH7XF8HM5DI"
+        resValue 'string', 'app_key', "TXMY6EYG0EMVYT7A42DHN9CRP37TXGKU38MR92S36LX0QIKOL0"
+        resValue 'string', 'smt_app_id', "de5a35294d4051e94e5c826e91e7a9cd"
     }
     signingConfigs {
         debug {
@@ -111,11 +114,19 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
+    api "com.netcore.android:smartech-sdk:${SMARTECH_BASE_SDK_VERSION}"
+    api "com.netcore.android:smartech-push:${SMARTECH_PUSH_SDK_VERSION}"
+    api "com.netcore.android:smartech-appinbox:${SMARTECH_APPINBOX_SDK_VERSION}"
+
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
+}
+
+repositories {
+    maven { url 'https://artifacts.netcore.co.in/artifactory/android' }
 }
 
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")

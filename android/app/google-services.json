@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "385111526964",
+    "project_id": "netcore-4e80e",
+    "storage_bucket": "netcore-4e80e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385111526964:android:f218a26f42067da1db4461",
+        "android_client_info": {
+          "package_name": "com.worldclockapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6k8E9Zb3ssjoH635YHiGGmde-tAkX5h8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

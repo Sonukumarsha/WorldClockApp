@@ -21,9 +21,9 @@
     "react-native-safe-area-context": "^5.3.0",
     "react-native-screens": "^4.9.2",
     "react-native-vector-icons": "^10.2.0",
-    "smartech-appinbox-react-native": "^3.5.2",
     "smartech-base-react-native": "^3.5.3",
-    "smartech-push-react-native": "^3.5.0"
+    "smartech-push-react-native": "^3.5.0",
+    "smartech-appinbox-react-native": "^3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

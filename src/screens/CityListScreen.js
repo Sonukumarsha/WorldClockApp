@@ -2,8 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
 import CityItem from '../components/CityItem';
 import cities from '../data/cities';
+import NavbarWithMenu from '../components/Navbar';
+import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
 
-const CityListScreen = ({navigation}) => {
+const CityListScreen = () => {
+  const navigation = useNavigation();
+  const user = auth()?.currentUser;
+  console.log(user)
   const [isLoading, setIsLoading] = useState(true);
   const [citiesData, setCitiesData] = useState([]);
 
@@ -28,13 +34,20 @@ const CityListScreen = ({navigation}) => {
     setCitiesData(updatedCities);
   };
 
+  if(!user) return navigation.navigate('Login');
+
   return (
     <View style={styles.container}>
+      <NavbarWithMenu />
       <FlatList
         data={citiesData}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <CityItem city={item} navigation={navigation} removeCity={removeCity} />
+          <CityItem
+            city={item}
+            navigation={navigation}
+            removeCity={removeCity}
+          />
         )}
         contentContainerStyle={styles.list}
       />

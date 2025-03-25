@@ -10,8 +10,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-firebase/app": "^21.12.1",
-    "@react-native-firebase/messaging": "^21.12.1",
+    "@react-native-firebase/app": "^21.12.2",
+    "@react-native-firebase/auth": "^21.12.2",
+    "@react-native-firebase/messaging": "^21.12.2",
     "@react-navigation/native": "^7.0.17",
     "@react-navigation/stack": "^7.2.1",
     "moment-timezone": "^0.5.47",
@@ -21,9 +22,9 @@
     "react-native-safe-area-context": "^5.3.0",
     "react-native-screens": "^4.9.2",
     "react-native-vector-icons": "^10.2.0",
+    "smartech-appinbox-react-native": "^3.5.2",
     "smartech-base-react-native": "^3.5.3",
-    "smartech-push-react-native": "^3.5.0",
-    "smartech-appinbox-react-native": "^3.5.2"
+    "smartech-push-react-native": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

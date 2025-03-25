@@ -2,12 +2,31 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {getCurrentTime} from '../utils/timeUtils';
+import {useNavigation} from '@react-navigation/native';
+import SmartechBaseReact from 'smartech-base-react-native';
+import uuid from 'react-native-uuid';
 
-const CityItem = ({city, navigation, removeCity}) => {
+const CityItem = ({city, removeCity}) => {
+  const navigation = useNavigation();
+
+  const navigateToCityTime = async () => {
+    try {
+      
+      const payloadata = {
+        name: city.name,
+        description: city.description,
+        payload_id: city.id,
+        event_id: uuid.v4(),
+      };
+      await SmartechBaseReact.trackEvent('Cities Clicked', payloadata);
+  
+      navigation.navigate('CityTime', {city});
+    } catch (error) {
+      console.log(error)
+    }
+  };
   return (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={() => navigation.navigate('CityTime', {city})}>
+    <TouchableOpacity style={styles.item} onPress={navigateToCityTime}>
       <View style={styles.content}>
         <View style={styles.textContainer}>
           <Text style={styles.cityName}>{city.name}</Text>

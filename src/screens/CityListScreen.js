@@ -9,7 +9,6 @@ import {useNavigation} from '@react-navigation/native';
 const CityListScreen = () => {
   const navigation = useNavigation();
   const user = auth()?.currentUser;
-  console.log(user)
   const [isLoading, setIsLoading] = useState(true);
   const [citiesData, setCitiesData] = useState([]);
 
@@ -45,7 +44,6 @@ const CityListScreen = () => {
         renderItem={({item}) => (
           <CityItem
             city={item}
-            navigation={navigation}
             removeCity={removeCity}
           />
         )}

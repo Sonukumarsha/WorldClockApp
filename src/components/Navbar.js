@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SmartechBaseReact from 'smartech-base-react-native';
 
 const NavbarWithMenu = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -20,6 +21,9 @@ const NavbarWithMenu = () => {
   const handleLogout = async () => {
     try {
       await auth().signOut();
+
+      await SmartechBaseReact.logoutAndClearUserIdentity(false);
+
       // Reset navigation stack to login screen
       navigation.reset({
         index: 0,

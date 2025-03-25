@@ -119,6 +119,8 @@ dependencies {
     implementation('com.google.firebase:firebase-analytics')
     implementation("com.google.firebase:firebase-auth")
 
+    implementation('com.netcore.android:smartech-push:3.5.4')
+
     api "com.netcore.android:smartech-sdk:${SMARTECH_BASE_SDK_VERSION}"
     api "com.netcore.android:smartech-push:${SMARTECH_PUSH_SDK_VERSION}"
     api "com.netcore.android:smartech-appinbox:${SMARTECH_APPINBOX_SDK_VERSION}"

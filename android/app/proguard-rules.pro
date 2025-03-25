@@ -8,3 +8,9 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+
+# Smartech Push SDK
+-dontwarn com.netcore.android.smartechpush.**
+-keep class com.netcore.android.smartechpush.**{*;}
+-keep class * implements com.netcore.android.smartechpush.**.* {*;}
+-keep class * extends com.netcore.android.smartechpush.**.* {*;}

@@ -9,20 +9,31 @@ import {
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import SmartechBaseReact from 'smartech-base-react-native';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const user = auth()?.currentUser
+  const [logging, setLogging] = useState(false);
+
+  const user = auth()?.currentUser;
 
   const onLogin = () => {
+    setLogging(true);
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
+        SmartechBaseReact.setUserIdentity(email, (result, error) => {
+          if (result) {
+            console.log(result);
+            SmartechBaseReact.login(email);
+          } else {
+            console.log(error);
+          }
+        });
         Alert.alert('Logged in successfully');
         navigation.navigate('CityList');
-        // navigation.navigate('Home');
       })
       .catch(error => {
         if (error.code === 'auth/user-not-found') {
@@ -34,6 +45,7 @@ const Login = () => {
         }
 
         Alert.alert('Error: ', error.message);
+        setLogging(false);
       });
   };
 
@@ -61,8 +73,13 @@ const Login = () => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={onLogin}>
-        <Text style={styles.buttonText}>Log In</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={onLogin}
+        disabled={logging}>
+        <Text style={styles.buttonText}>
+          {logging ? 'Logging in...' : 'Log In'}
+        </Text>
       </TouchableOpacity>
       <View style={styles.promptText}>
         <Text>Don't have an account? </Text>

@@ -9,18 +9,40 @@ import {
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import SmartechBaseReact from 'smartech-base-react-native';
 
 const Signup = () => {
   const navigation = useNavigation();
-  const user = auth()?.currentUser
+  const user = auth()?.currentUser;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signingUp, setSigningUp] = useState(false);
 
   const onSignup = () => {
+    setSigningUp(true);
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        // Alert.alert('User signed up successfully');
+      .then(async () => {
+        const payloadata = {
+          FIRST_NAME: email.split('@')[0],
+          LAST_NAME: '',
+          AGE: '',
+          COUNTRY: 'India',
+          STATE: 'Orissa',
+          CITY: 'Berhampur',
+          PINCODE: '760002',
+        };
+
+        await SmartechBaseReact.updateUserProfile(
+          payloadata,
+          function (response) {
+            console.log(response)
+          },
+          function (error) {
+            console.log(error)
+          },
+        );
+
         Alert.alert('User signed up successfully');
         setEmail('');
         setPassword('');
@@ -34,6 +56,7 @@ const Signup = () => {
           Alert.alert('That email address is invalid!');
         }
         Alert.alert(error.message);
+        setSigningUp(false);
       });
   };
 
@@ -61,8 +84,10 @@ const Signup = () => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={onSignup}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <TouchableOpacity style={styles.button} onPress={onSignup} disabled={signingUp}>
+        <Text style={styles.buttonText}>
+          {signingUp? 'Signing Up...' : 'Sign Up'}
+        </Text>
       </TouchableOpacity>
       <View style={styles.promptText}>
         <Text>Already have an account? </Text>

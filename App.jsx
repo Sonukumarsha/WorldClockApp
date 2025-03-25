@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppNavigator from './src/navigation/AppNavigator';
-import SmartechBaseReact from 'smartech-base-react-native';
 import usePushNotification from './src/hooks/usePushNotification';
 
 const App = () => {

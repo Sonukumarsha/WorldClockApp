@@ -48,13 +48,6 @@ const Signup = () => {
         setPassword('');
       })
       .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('That email address is already in use!');
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          Alert.alert('That email address is invalid!');
-        }
         Alert.alert(error.message);
         setSigningUp(false);
       });

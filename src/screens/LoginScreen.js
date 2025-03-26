@@ -27,7 +27,7 @@ const Login = () => {
         SmartechBaseReact.setUserIdentity(email, (result, error) => {
           if (result) {
             console.log(result);
-            SmartechBaseReact.login(email);
+            SmartechBaseReact.login(email);// we are logging in user with smartech 
           } else {
             console.log(error);
           }
@@ -36,14 +36,6 @@ const Login = () => {
         navigation.navigate('CityList');
       })
       .catch(error => {
-        if (error.code === 'auth/user-not-found') {
-          Alert.alert('User not found');
-        }
-
-        if (error.code === 'auth/wrong-password') {
-          Alert.alert('Wrong password');
-        }
-
         Alert.alert('Error: ', error.message);
         setLogging(false);
       });

@@ -11,7 +11,6 @@ const CityItem = ({city, removeCity}) => {
 
   const navigateToCityTime = async () => {
     try {
-      
       const payloadata = {
         name: city.name,
         description: city.description,

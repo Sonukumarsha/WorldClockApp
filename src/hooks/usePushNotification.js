@@ -31,7 +31,7 @@ const usePushNotification = () => {
     }
   };
 
-  const listenToForegroundNotifications = async () => {
+  const listenToForegroundNotifications = async () => { // Listen for incoming notifications when app is opened
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       // SmartechPushReact.handlePushNotification(remoteMessage.data,(result) => {
       //   console.log('isNotificationHandled by smartech :: ', result);
@@ -42,7 +42,7 @@ const usePushNotification = () => {
     return unsubscribe;
   };
 
-  const listenToBackgroundNotifications = async () => {
+  const listenToBackgroundNotifications = async () => { // Listen for incoming notifications when app is in background
     const unsubscribe = messaging().setBackgroundMessageHandler(
       async remoteMessage => {
         // SmartechPushReact.handlePushNotification(remoteMessage.data, (result) => {
@@ -58,36 +58,11 @@ const usePushNotification = () => {
     return unsubscribe;
   };
 
-  const onNotificationOpenedAppFromBackground = async () => {
-    const unsubscribe = messaging().onNotificationOpenedApp(
-      async remoteMessage => {
-        console.log(
-          'App opened from BACKGROUND by tapping notification:',
-          JSON.stringify(remoteMessage),
-        );
-      },
-    );
-    return unsubscribe;
-  };
-
-  const onNotificationOpenedAppFromQuit = async () => {
-    const message = await messaging().getInitialNotification();
-
-    if (message) {
-      console.log(
-        'App opened from QUIT by tapping notification:',
-        JSON.stringify(message),
-      );
-    }
-  };
-
   return {
     requestUserPermission,
     getFCMToken,
     listenToForegroundNotifications,
     listenToBackgroundNotifications,
-    onNotificationOpenedAppFromBackground,
-    onNotificationOpenedAppFromQuit,
   };
 };
 
